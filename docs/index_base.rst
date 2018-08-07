@@ -18,6 +18,19 @@ document a given Python package for Sphinx.
 Currently, this generator only handles packages with one level of submodules and
 each submodule must have an ``__all__`` defined to declare what gets documented.
 
+Connections
+-----------
+
+Want to see what this produces? Check out one of the following projects which uses ``gendocs``:
+
+- `ESPA Tools`_: A Python package for simple loading of Landsat imagery as NumPy arrays
+- `PVGeo`_: A Python package for visualizing geophysical data in VTK and ParaView
+
+
+.. _ESPA Tools: https://espatools.readthedocs.io/en/latest/?badge=latest)
+.. _PVGeo: http://docs.pvgeo.org
+
+
 Get Started
 -----------
 
@@ -49,17 +62,6 @@ Note that you can also set up a base index file in your project for the ``Genera
 to append if you'd like to include a brief overview of the package.
 We keep ours in the top level of the docs directory and pass the filename to the
 ``DocumentPackages`` method.
-
-
-Connections
------------
-
-- `ESPA Tools`_: A Python package for simple loading of Landsat imagery as NumPy arrays
-- `PVGeo`_: A Python package for visualizing geophysical data in VTK and ParaView
-
-
-.. _ESPA Tools: https://espatools.readthedocs.io/en/latest/?badge=latest)
-.. _PVGeo: http://docs.pvgeo.org
 
 
 Let People Know
