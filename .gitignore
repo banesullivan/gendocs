@@ -9,3 +9,4 @@ dist/
 gendocs.egg-info/
 docs/build/
 docs/source/pages
+docs/source/index.rst
