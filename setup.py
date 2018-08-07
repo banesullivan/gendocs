@@ -18,6 +18,9 @@ setuptools.setup(
     long_description_content_type="text/markdown",
     url="https://github.com/banesullivan/gendocs",
     packages=setuptools.find_packages(),
+    install_requires=[
+        'Sphinx>=1.7',
+    ],
     classifiers=(
         "Programming Language :: Python",
         "License :: OSI Approved :: BSD License",
