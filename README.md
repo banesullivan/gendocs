@@ -1,4 +1,4 @@
-# Automatic Documentation Generator
+# Generate Documentation Automatically
 
 [![PyPI](https://img.shields.io/pypi/v/gendocs.svg)](https://pypi.org/project/gendocs/) [![Build Status](https://travis-ci.org/banesullivan/gendocs.svg?branch=master)](https://travis-ci.org/banesullivan/gendocs) [![Documentation Status](https://readthedocs.org/projects/gendocs/badge/?version=latest)](https://gendocs.readthedocs.io/en/latest/?badge=latest)
 
