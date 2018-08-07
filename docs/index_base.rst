@@ -62,6 +62,29 @@ Projects Using ``gendocs``
 .. _PVGeo: http://docs.pvgeo.org
 
 
+Are you using ``gendocs``?
+--------------------------
+
+If your project generates documentation automatically, please add a badge to your project to let people know! We hope that these badges when stir curiosity, involvement, and community contributions to the ``gendocs`` package.
+
+Markdown:
+
+.. code-block:: text
+
+    [![Documentation Built by gendocs](https://img.shields.io/badge/docs%20by-gendocs-blue.svg)](https://gendocs.readthedocs.io/en/latest/?badge=latest)
+
+
+RST / Sphinx:
+
+.. code-block:: text
+
+    .. image:: https://img.shields.io/badge/docs%20by-gendocs-blue.svg
+       :target: https://gendocs.readthedocs.io/en/latest/?badge=latest)
+       :alt: Documentation Built by gendocs
+
+
+
+
 
 .. toctree::
    :hidden:
