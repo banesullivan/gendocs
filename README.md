@@ -8,7 +8,7 @@ Want to what this produces? Head over to the `gendocs` [documentation]() for a p
 
 # Usage
 
-This generator is built for sphinx (RST) documentation.
+This generator is built for Sphinx (RST) documentation.
 To document your package, setup sphinx and a `conf.py` then add the following
 somewhere near the top of your `conf.py`:
 
@@ -22,7 +22,7 @@ Generator.DocumentPackages(wonderfulpackage)
 
 ```
 
-Note that you can also set up an base index file in your project for the Generator
+Note that you can also set up a base index file in your project for the `Generator`
 to append if you'd like to include a brief overview of the package.
 We keep ours in the top level of the docs directory and pass the filename to the
 `DocumentPackages` method.
