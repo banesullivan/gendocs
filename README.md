@@ -36,3 +36,9 @@ Note that you can also set up a base index file in your project for the `Generat
 to append if you'd like to include a brief overview of the package.
 We keep ours in the top level of the docs directory and pass the filename to the
 `DocumentPackages` method.
+
+
+# Projects Using `gendocs`
+
+- [ESPA Tools](https://espatools.readthedocs.io/en/latest/?badge=latest): A Python package for simple loading of Landsat imagery as NumPy arrays
+- [PVGeo](http://docs.pvgeo.org): A Python package for visualizing geophysical data in VTK and ParaView
