@@ -46,7 +46,7 @@ We keep ours in the top level of the docs directory and pass the filename to the
 
 # Are you using `gendocs`?
 
-If your project generates documentation automatically, please add a badge to your project to let people know! We hope that these badges when stir curiosity, involvement, and community contributions to the `gendocs` package.
+If your project generates documentation automatically, please add a badge to your project to let people know! We hope that these badges will stir curiosity, involvement, and community contributions to the `gendocs` package.
 
 Markdown:
 
