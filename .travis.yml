@@ -11,6 +11,7 @@ script:
 - python -m gendocs test
 - cd docs
 - make html
+- cd ..
 notifications:
   email:
     recipients:
