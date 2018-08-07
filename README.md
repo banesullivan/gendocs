@@ -38,13 +38,13 @@ We keep ours in the top level of the docs directory and pass the filename to the
 `DocumentPackages` method.
 
 
-# Projects Using `gendocs`
+# Connections
 
 - [ESPA Tools](https://espatools.readthedocs.io/en/latest/?badge=latest): A Python package for simple loading of Landsat imagery as NumPy arrays
 - [PVGeo](http://docs.pvgeo.org): A Python package for visualizing geophysical data in VTK and ParaView
 
 
-# Are you using `gendocs`?
+# Let People Know
 
 If your project generates documentation automatically, please add a badge to your project to let people know! We hope that these badges will stir curiosity, involvement, and community contributions to the `gendocs` package.
 

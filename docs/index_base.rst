@@ -51,8 +51,8 @@ We keep ours in the top level of the docs directory and pass the filename to the
 ``DocumentPackages`` method.
 
 
-Projects Using ``gendocs``
---------------------------
+Connections
+-----------
 
 - `ESPA Tools`_: A Python package for simple loading of Landsat imagery as NumPy arrays
 - `PVGeo`_: A Python package for visualizing geophysical data in VTK and ParaView
@@ -62,8 +62,8 @@ Projects Using ``gendocs``
 .. _PVGeo: http://docs.pvgeo.org
 
 
-Are you using ``gendocs``?
---------------------------
+Let People Know
+---------------
 
 If your project generates documentation automatically, please add a badge to your project to let people know! We hope that these badges will stir curiosity, involvement, and community contributions to the ``gendocs`` package.
 
