@@ -1,5 +1,7 @@
 # Automatic Documentation Generator
 
+[![PyPI](https://img.shields.io/pypi/v/gendocs.svg)](https://pypi.org/project/gendocs/) [![Build Status](https://travis-ci.org/banesullivan/gendocs.svg?branch=master)](https://travis-ci.org/banesullivan/gendocs)
+
 This is a Python package for automatically building the documentation pages to document a given Python package for Sphinx.
 Currently, this generator only handles packages with one level of submodules and each submodule must have an `__all__` defined to declare what gets documented.
 
