@@ -1,0 +1,11 @@
+# OS Files:
+**/.DS_Store
+**/*.pyc
+**/__pycache__/
+.coverage
+coverage.xml
+build/
+dist/
+gendocs.egg-info/
+docs/build/
+docs/source/pages
