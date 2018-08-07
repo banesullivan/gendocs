@@ -117,6 +117,7 @@ class Generator(object):
             mods (module): The module to document as its own page
             path (str): The relative directory name to save the page
             modname (str): The displayname of the module
+            showprivate (bool): A flag for whether or not to display private members
 
         Returns:
             str: A tocree to append to the index page for navigation
@@ -173,6 +174,7 @@ class Generator(object):
             packages (list(module)): A list of packages that contain submodules to document
             index (str): The index page content to append
             path (str): The relative directory name to save the page
+            showprivate (bool): A flag for whether or not to display private members
 
         Returns:
             str: The new index page contents containing needed tocrees
@@ -209,6 +211,13 @@ class Generator(object):
 
     @staticmethod
     def DocumentPackages(packages, index_base=None, showprivate=False):
+        """This is the high level API to use to generate documentation pages for any given package(s).
+
+        Args:
+            packages (list(module)): A list of packages that contain submodules to document
+            index_base (str): The index page file name. This content will be appended
+            showprivate (bool): A flag for whether or not to display private members
+        """
         if index_base is None:
             index = SAMPLE_INDEX
         else:
