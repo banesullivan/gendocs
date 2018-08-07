@@ -42,3 +42,23 @@ We keep ours in the top level of the docs directory and pass the filename to the
 
 - [ESPA Tools](https://espatools.readthedocs.io/en/latest/?badge=latest): A Python package for simple loading of Landsat imagery as NumPy arrays
 - [PVGeo](http://docs.pvgeo.org): A Python package for visualizing geophysical data in VTK and ParaView
+
+
+# Are you using `gendocs`?
+
+If your project generates documentation automatically, please add a badge to your project to let people know! We hope that these badges when stir curiosity, involvement, and community contributions to the `gendocs` package.
+
+Markdown:
+
+```text
+[![Documentation Built by gendocs](https://img.shields.io/badge/docs%20by-gendocs-blue.svg)](https://gendocs.readthedocs.io/en/latest/?badge=latest)
+```
+
+RST / Sphinx:
+
+```text
+.. image:: https://img.shields.io/badge/docs%20by-gendocs-blue.svg
+   :target: https://gendocs.readthedocs.io/en/latest/?badge=latest)
+   :alt: Documentation Built by gendocs
+
+```
