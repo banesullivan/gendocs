@@ -43,24 +43,33 @@ new features in their documentation.
 class Classifier(object):
 
     @staticmethod
-    def GetModuleText(heading, name):
+    def GetModuleText(heading, name, showprivate=False):
         """Returns the needed text to automatically document a module in RSF/sphinx"""
         und = '-'*len(heading)
+        if showprivate:
+            opts = ':private-members:'
+        else:
+            opts = ''
         return r'''
 
 %s
 %s
 
 .. automodule:: %s
+    %s
 
-''' % (heading, und, name)
+''' % (heading, und, name, opts)
 
 ###############################################################################
 
     @staticmethod
-    def GetClassText(heading, name):
+    def GetClassText(heading, name, showprivate=False):
         """Returns the needed text to automatically document a class in RSF/sphinx"""
         und = '^'*len(heading)
+        if showprivate:
+            opts = ':private-members:'
+        else:
+            opts = ''
         return r'''
 
 %s
@@ -70,9 +79,9 @@ class Classifier(object):
     :show-inheritance:
     :members:
     :undoc-members:
-    :private-members:
+    %s
 
-''' % (heading, und, name)
+''' % (heading, und, name, opts)
 
 ###############################################################################
 
@@ -99,7 +108,7 @@ class Generator(object):
     """
 
     @staticmethod
-    def _ProduceContent(mods, path, modname):
+    def _ProduceContent(mods, path, modname, showprivate=False):
         """An internal helper to create pages for a module. This will automatically
         generate the needed RSF to document each submodule module and save each
         sumbodule to its own page under the given path.
@@ -119,7 +128,9 @@ class Generator(object):
    :caption: %s:
     ''' % modname
         for mod in mods:
-            if mod[0][0:2] == '__':
+            if not showprivate and mod[0][0:1] == '_':
+                continue
+            if mod[0][0:2] == '__': #and not showprivate
                 continue
             try:
                 name = mod[1].__displayname__
@@ -132,9 +143,9 @@ class Generator(object):
             feats = inspect.getmembers(mod[1])
             fname = name.replace(' ', '-')+'.rst'
             appIndex += '\n   %s/%s' % (path, fname)
-            feats = [f for f in feats if f[0] in all]
+            feats = [f for f in feats if f[0] in all and (showprivate or not f[0][0:1] == '_')]
             with open('./%s/%s' % (path, fname), 'w') as fid:
-                fid.write(Classifier.GetModuleText(name, mod[1].__name__))
+                fid.write(Classifier.GetModuleText(name, mod[1].__name__, showprivate=showprivate))
 
                 for f in feats:
                     # Check for a __displayname__
@@ -145,7 +156,7 @@ class Generator(object):
                             featname = f[1].__name__
                         # Make the auto doc rst
                         if inspect.isclass(f[1]):
-                            fid.write(Classifier.GetClassText(featname, '%s.%s' % (mod[1].__name__, f[1].__name__)))
+                            fid.write(Classifier.GetClassText(featname, '%s.%s' % (mod[1].__name__, f[1].__name__), showprivate=showprivate))
                         elif inspect.isfunction(f[1]):
                              fid.write(Classifier.GetFunctionText(featname, '%s.%s' %  (mod[1].__name__, f[1].__name__)))
 
@@ -153,7 +164,7 @@ class Generator(object):
         return appIndex
 
     @staticmethod
-    def MakePages(packages, index, path='pages'):
+    def MakePages(packages, index, path='pages', showprivate=False):
         """Generates all of the documentation for given packages and
         appends new tocrees to the index. All documentation pages will be under the
         set relative path.
@@ -179,7 +190,7 @@ class Generator(object):
                 if mod[0][0] == '_': pvt.append(mod)
                 else: nmods.append(mod)
             nmods += pvt
-            appIndex += Generator._ProduceContent(nmods, path, module.__name__)
+            appIndex += Generator._ProduceContent(nmods, path, module.__name__, showprivate=showprivate)
 
         return index + appIndex
 
@@ -197,11 +208,11 @@ class Generator(object):
         return None
 
     @staticmethod
-    def DocumentPackages(packages, index_base=None):
+    def DocumentPackages(packages, index_base=None, showprivate=False):
         if index_base is None:
             index = SAMPLE_INDEX
         else:
             index = Generator.OpenIndex(index_base)
-        index = Generator.MakePages(packages, index)
+        index = Generator.MakePages(packages, index, showprivate=showprivate)
         Generator.WriteIndex(index)
         return None
