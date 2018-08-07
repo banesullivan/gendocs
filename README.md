@@ -11,7 +11,7 @@ Want to see what this produces? Head over to the `gendocs` [documentation](https
 # Get Started
 
 Install `gendocs` from PyPI:
-```py
+```bash
 $ pip install gendocs
 ```
 
