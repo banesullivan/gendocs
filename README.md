@@ -8,8 +8,15 @@ Currently, this generator only handles packages with one level of submodules and
 
 Want to see what this produces? Head over to the `gendocs` [documentation](https://gendocs.readthedocs.io/en/latest/) for a preview!
 
+# Get Started
 
-# Usage
+Install `gendocs` from PyPI:
+```py
+$ pip install gendocs
+```
+
+
+## Usage
 
 This generator is built for Sphinx (RST) documentation.
 To document your package, setup sphinx and a `conf.py` then add the following
