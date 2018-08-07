@@ -6,7 +6,7 @@
 This is a Python package for automatically building the documentation pages to document a given Python package for Sphinx.
 Currently, this generator only handles packages with one level of submodules and each submodule must have an `__all__` defined to declare what gets documented.
 
-Want to what this produces? Head over to the `gendocs` [documentation](https://gendocs.readthedocs.io/en/latest/) for a preview!
+Want to see what this produces? Head over to the `gendocs` [documentation](https://gendocs.readthedocs.io/en/latest/) for a preview!
 
 
 # Usage
