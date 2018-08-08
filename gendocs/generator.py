@@ -1,3 +1,81 @@
+"""This provides all of the functionality behind ``gendocs`` and contains the ``Generator`` class which is what you will need to use if you would like to start automatically documenting your packages.
+
+Conventions
+-----------
+
+In order for ``gendocs`` to work properly, we have re-definded the idea of `packages` and `modules` for the sake of ``gendocs``. A package can contain just about anything: classes, functions, modules, sub-module, etc.; while a module in the traditional sense can do the same, we re-define modules to not contain any further sub-modules. This re-definition allows ``gendocs`` to mimic the structure of a Python package and automatically generated documentation pages containing the docstrings for the package!
+
+What to Include
+^^^^^^^^^^^^^^^
+
+For ``gendocs`` to work, every module being documented MUST contain an ``__all__`` varaible defining what is available to be documented. This varaible ensures ``gendocs`` does not recurse through external packages you might use internally.
+
+Some optional variables:
+
+- ``__displayname__`` (``str``): include this attribute to change how the heading for any documented element is displayed
+- ``__category__`` (``str``): if any documented element contains this attribute, a statics table will be generated n the home page to count occurences of various categories.
+
+
+A Simple Use Case
+-----------------
+
+If you simply just want to put up the documentation for your package, then set up sphinx documentation using ``sphinx-quickstart`` (`details`_) and stop after you've generated a new ``conf.py``. Edit the parameters of your configuration file appropriately and the add the following somewhere near the top:
+
+.. _details: http://www.sphinx-doc.org/en/1.7/tutorial.html
+
+.. code-block:: python
+
+    # Import the package to document:
+    import wonderfulpackage
+
+    # Automatically generate documentation pages
+    from gendocs import Generator
+    Generator().DocumentPackages(wonderfulpackage)
+
+
+That's all you have to do! Now you can push your changes to a continuous integration like ReadTheDocs ad have your entire package automatically documented
+
+
+Sophisticated Use Case
+----------------------
+
+Private Members
+^^^^^^^^^^^^^^^
+Its worth noting that you can control how private features are ducumented by passing an argument to the the ``Generator``:
+
+.. code-block:: python
+
+    # Import the package to document:
+    import wonderfulpackage
+
+    # Automatically generate documentation pages and show private members
+    from gendocs import Generator
+    Generator(showprivate=True).DocumentPackages(wonderfulpackage)
+
+
+Custom Homepage
+^^^^^^^^^^^^^^^
+
+To use your own homepage to provide a project overview then create a ``.rst`` file containing the content for your homepage and pase the relative file name to the ``DocumentPackages`` method:
+
+.. code-block:: python
+
+    # Import the package to document:
+    import wonderfulpackage
+
+    # Automatically generate documentation pages and show private members
+    from gendocs import Generator
+    gen = Generator()
+    gen.DocumentPackages(
+                         wonderfulpackage,
+                         index_base='../index_base.rst',
+                         showprivate=True
+                        )
+
+
+"""
+
+
 __all__ = [
     'Classifier',
     'Generator',
@@ -341,6 +419,10 @@ class Generator(properties.HasProperties):
         for i in range(len(packages)):
             # The package to document and its path
             package = packages[i]
+            try:
+                name = package.__displayname__
+            except AttributeError:
+                name = package.__name__
             # Each package at top level gets its own toctree
             appIndex += r'''
 
@@ -349,10 +431,28 @@ class Generator(properties.HasProperties):
    :caption: %s:
 ''' % (package.__name__)
             # Make sure paths are ready
-            path = 'content/%s' % package.__name__
+            path = 'content/%s' % name
             if os.path.exists(path):
                 shutil.rmtree(path)
             os.makedirs(path)
+
+            # Check if there is top level documentation
+            if package.__doc__:
+                # Get metadata
+                meta = 'About %s\n%s\n' % (name, '='*len('About ' + name))
+                author = getattr(package, "__author__", None)
+                license = getattr(package, "__license__", None)
+                copyright = getattr(package, "__copyright__", None)
+                version = getattr(package, "__version__", None)
+                if author: meta += '\n* Author: %s' % author
+                if license: meta += '\n* License: %s' % license
+                if copyright: meta += '\n* Copyright: %s' % copyright
+                if version: meta += '\n* Version: %s' % version
+                about = '%s/%s' % (path, 'about.rst')
+                with open(about, 'w') as f:
+                    f.write('%s\n\n' % meta)
+                    f.write(package.__doc__)
+                appIndex += '\n   %s' % about
 
             appIndex += self._MakePackagePages(package, showprivate=showprivate)
 

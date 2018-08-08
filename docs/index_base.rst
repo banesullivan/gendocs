@@ -14,7 +14,9 @@ Generate Documentation Automatically
    :alt: Build Status
 
 This is a Python package for automatically building the documentation pages to
-document a given Python package for Sphinx.
+document a given Python package using Sphinx.
+
+This package allows users to keep all of their documentation directly within their packages without have to make new doc pages anytime new functionality is added! For a demonstration of how this works, please explore the ``dummypkg`` documentation we have included to show how features in ``gendocs`` can be used. Note that all the docstrings in ``dummypkg`` are what produce its documentation pages.
 
 Connections
 -----------

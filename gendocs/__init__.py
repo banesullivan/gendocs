@@ -1,3 +1,6 @@
+"""gendocs: automatically build the documentation pages to document a given Python package for Sphinx
+"""
+
 from .generator import *
 
 __author__ = 'Bane Sullivan'
