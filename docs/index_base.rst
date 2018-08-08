@@ -87,7 +87,11 @@ RST / Sphinx:
        :alt: Documentation Built by gendocs
 
 
+Contribute
+----------
+Check out ``gendocs`` of `GitHub_` to Contribute and make automatic documentation even better!
 
+.. _GitHub: https://github.com/banesullivan/gendocs
 
 
 .. toctree::
