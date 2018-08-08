@@ -24,7 +24,7 @@ import gendocs # for documenting
 from gendocs import Generator
 
 # Automatically generate documentaion pages
-Generator.DocumentPackages(gendocs, '../index_base.rst', showprivate=True)
+Generator().DocumentPackages(gendocs, '../index_base.rst', showprivate=True)
 
 
 # -- Project information -----------------------------------------------------

@@ -4,7 +4,6 @@
 
 
 This is a Python package for automatically building the documentation pages to document a given Python package for Sphinx.
-Currently, this generator only handles packages with one level of submodules and each submodule must have an `__all__` defined to declare what gets documented.
 
 # Connections
 Want to see what this produces? Check out one of the following projects which uses `gendocs`:
@@ -33,7 +32,7 @@ somewhere near the top of your `conf.py`:
 import wonderfulpackage
 # Automatically generate documentation pages
 from gendocs import Generator
-Generator.DocumentPackages(wonderfulpackage)
+Generator().DocumentPackages(wonderfulpackage)
 
 ```
 

@@ -1,4 +1,4 @@
-from .gen import *
+from .generator import *
 
 __author__ = 'Bane Sullivan'
 __license__ = 'BSD-3-Clause'
