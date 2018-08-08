@@ -129,8 +129,10 @@ class Generator(properties.HasProperties):
         """Generates a statics table based on set categories"""
         if len(self.__categories.keys()) < 1:
             return ''
-        cats = ', '.join(['"%s"' % c for c in self.__categories.keys()])
-        vals = ', '.join(['%d' % v for v in self.__categories.values()])
+        d = self.__categories
+        keys = sorted(d.keys())
+        cats = ', '.join(['"%s"' % k for k in keys])
+        vals = ', '.join(['%d' % d[k] for k in keys])
 
         return r'''
 
