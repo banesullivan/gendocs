@@ -304,6 +304,7 @@ class Generator(properties.HasProperties):
 
             # Write the file
             with open(findex, 'w') as f:
+                if package.__doc__: f.write(package.__doc__)
                 f.write(index)
 
             # return filename for index file at package level
