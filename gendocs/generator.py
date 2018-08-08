@@ -3,7 +3,7 @@
 Conventions
 -----------
 
-In order for ``gendocs`` to work properly, we have re-definded the idea of `packages` and `modules` for the sake of ``gendocs``. A package can contain just about anything: classes, functions, modules, sub-module, etc.; while a module in the traditional sense can do the same, we re-define modules to not contain any further sub-modules. This re-definition allows ``gendocs`` to mimic the structure of a Python package and automatically generated documentation pages containing the docstrings for the package!
+In order for ``gendocs`` to work properly, we have re-definded the idea of `packages` and `modules` for the sake of ``gendocs``. A package can contain just about anything: classes, functions, modules, sub-module, etc.; while a module in the traditional sense can do the same, we re-define modules to not contain any further sub-modules. This re-definition allows ``gendocs`` to mimic the structure of a Python package and automatically generate documentation pages containing the docstrings for the package!
 
 What to Include
 ^^^^^^^^^^^^^^^
@@ -19,7 +19,7 @@ Some optional variables:
 A Simple Use Case
 -----------------
 
-If you simply just want to put up the documentation for your package, then set up sphinx documentation using ``sphinx-quickstart`` (`details`_) and stop after you've generated a new ``conf.py``. Edit the parameters of your configuration file appropriately and the add the following somewhere near the top:
+If you simply just want to put up the documentation for your package, then set up sphinx documentation using ``sphinx-quickstart`` (`details`_) and stop after you've generated a new ``conf.py``. Edit the parameters of your configuration file appropriately and then add the following somewhere near the top:
 
 .. _details: http://www.sphinx-doc.org/en/1.7/tutorial.html
 
@@ -33,7 +33,7 @@ If you simply just want to put up the documentation for your package, then set u
     Generator().DocumentPackages(wonderfulpackage)
 
 
-That's all you have to do! Now you can push your changes to a continuous integration like ReadTheDocs ad have your entire package automatically documented
+That's all you have to do! Now you can push your changes to a continuous integration like ReadTheDocs and have your entire package automatically documented.
 
 
 Sophisticated Use Case
@@ -41,7 +41,8 @@ Sophisticated Use Case
 
 Private Members
 ^^^^^^^^^^^^^^^
-Its worth noting that you can control how private features are ducumented by passing an argument to the the ``Generator``:
+
+Its worth noting that you can control how private features are ducumented by passing an argument to the the ``DocumentPackages`` method:
 
 .. code-block:: python
 
@@ -50,7 +51,7 @@ Its worth noting that you can control how private features are ducumented by pas
 
     # Automatically generate documentation pages and show private members
     from gendocs import Generator
-    Generator(showprivate=True).DocumentPackages(wonderfulpackage)
+    Generator().DocumentPackages(wonderfulpackage, showprivate=True)
 
 
 Custom Homepage
@@ -98,6 +99,10 @@ appIndex = '''
 SAMPLE_INDEX = """
 Welcome to the docs!
 ********************
+
+.. image:: https://img.shields.io/badge/docs%20by-gendocs-blue.svg
+   :target: https://gendocs.readthedocs.io/en/latest/?badge=latest)
+   :alt: Documentation Built by gendocs
 
 This website hosts the code documentation for a wonderful Python package.
 This documentation was built using `gendocs`_, an automatic documentation pages
