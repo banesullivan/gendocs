@@ -89,12 +89,6 @@ RST / Sphinx:
 
 Contribute
 ----------
-Check out ``gendocs`` of `GitHub_` to Contribute and make automatic documentation even better!
+Check out ``gendocs`` of `GitHub`_ to Contribute and make automatic documentation even better!
 
 .. _GitHub: https://github.com/banesullivan/gendocs
-
-
-.. toctree::
-   :hidden:
-
-   self

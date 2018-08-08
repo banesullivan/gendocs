@@ -112,12 +112,37 @@ class Generator(properties.HasProperties):
     - `packages` contain modules, classes, and functions
     - `modules` cannot contain sub-modules but only classes and functions
     """
+    def __init__(self, **kwargs):
+        properties.HasProperties.__init__(self, **kwargs)
+        self.__stats = None
+        # A dictionary to keep track of Statistics base on the ``__category__`` variable of any documented element.
+        self.__categories = dict()
+
+
     path = properties.String(
             'The top level directory to store all documentation content.',
             default='content'
             )
 
 
+    def _GenerateStaticsTable(self, title='Current Statistics'):
+        """Generates a statics table based on set categories"""
+        if len(self.__categories.keys()) < 1:
+            return ''
+        cats = ', '.join(['"%s"' % c for c in self.__categories.keys()])
+        vals = ', '.join(['%d' % v for v in self.__categories.values()])
+
+        return r'''
+
+%s
+%s
+
+.. csv-table::
+   :header: %s
+
+   %s
+
+''' % (title, '-'*len(title), cats, vals)
 
     def _ProduceSingleContent(self, mod, showprivate=False):
         """An internal helper to create a page for a single module. This will
@@ -139,6 +164,12 @@ class Generator(properties.HasProperties):
             name = mod[1].__displayname__
         except AttributeError:
             name = mod[0]
+        try:
+            category = mod[1].__category__
+            self.__categories.setdefault(category, 0)
+            self.__categories[category] += 1
+        except AttributeError:
+            pass
         feats = inspect.getmembers(mod[1])
         fname = 'content/' + mod[1].__name__.replace('.', '/').replace(' ', '-')+'.rst'
         feats = [f for f in feats if f[0] in all and (showprivate or not f[0][0:1] == '_')]
@@ -152,6 +183,12 @@ class Generator(properties.HasProperties):
                         featname = f[1].__displayname__
                     except AttributeError:
                         featname = f[1].__name__
+                    try:
+                        category = f[1].__category__
+                        self.__categories.setdefault(category, 0)
+                        self.__categories[category] += 1
+                    except AttributeError:
+                        pass
                     # Make the auto doc rst
                     if inspect.isclass(f[1]):
                         fid.write(Classifier.GetClassText(featname, '%s.%s' % (mod[1].__name__, f[1].__name__), showprivate=showprivate))
@@ -277,18 +314,17 @@ class Generator(properties.HasProperties):
 
 
 
-    def _DocPackageFromTop(self, packages, index, showprivate=False):
+    def _DocPackageFromTop(self, packages, showprivate=False):
         """Generates all of the documentation for given packages and
         appends new tocrees to the index. All documentation pages will be under the
         set relative path.
 
         Args:
             packages (list(module)): A package or list of packages that contain submodules to document
-            index (str): The index page content to append
             showprivate (bool): A flag for whether or not to display private members
 
         Returns:
-            str: The new index page contents containing needed tocrees
+            str: The new content to append to the index
         """
         appIndex = ''
         if not isinstance(packages, list):
@@ -317,8 +353,8 @@ class Generator(properties.HasProperties):
 
             appIndex += self._MakePackagePages(package, showprivate=showprivate)
 
-        # Return the new index content
-        return index + appIndex
+        # Return the new content to append
+        return appIndex
 
 
     @staticmethod
@@ -347,6 +383,14 @@ class Generator(properties.HasProperties):
             index = SAMPLE_INDEX
         else:
             index = self.OpenIndex(index_base)
-        index = self._DocPackageFromTop(packages, index, showprivate=showprivate)
-        self.WriteIndex(index)
+        app = self._DocPackageFromTop(packages, showprivate=showprivate)
+        index += self._GenerateStaticsTable()
+        index += """
+.. toctree::
+   :hidden:
+
+   self
+
+"""
+        self.WriteIndex(index + app)
         return None
