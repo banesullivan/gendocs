@@ -107,23 +107,10 @@ Welcome to the docs!
 ********************
 
 .. image:: https://img.shields.io/badge/docs%20by-gendocs-blue.svg
-   :target: https://gendocs.readthedocs.io/en/latest/?badge=latest)
+   :target: https://gendocs.readthedocs.io/en/latest/)
    :alt: Documentation Built by gendocs
 
-This website hosts the code documentation for a wonderful Python package.
-This documentation was built using `gendocs`_, an automatic documentation pages
-generator so developers can focus on their work and not worry about including
-new features in their documentation.
-
-
-.. _gendocs: https://github.com/banesullivan/gendocs/
-
-.. toctree::
-   :hidden:
-
-   self
-
-
+Welcome to the code documentation for the {} Python package{}.
 
 """
 
@@ -484,8 +471,8 @@ class Generator(properties.HasProperties):
             fid.write(index)
         return None
 
-    # TODO remove path arg
-    def DocumentPackages(self, packages, index_base=None, showprivate=False):
+
+    def DocumentPackages(self, packages, index_base=None, showprivate=False, notify=True):
         """This is the high level API to use to generate documentation pages for any given package(s).
 
         Args:
@@ -494,7 +481,18 @@ class Generator(properties.HasProperties):
             showprivate (bool): A flag for whether or not to display private members
         """
         if index_base is None:
-            index = SAMPLE_INDEX
+            gram = ''
+            if isinstance(packages, list) and len(packages) > 1:
+                gram = 's'
+                if len(packages) < 3:
+                    names = ' and '.join(['``%s``' % p.__name__ for p in packages])
+                else:
+                    names = ['``%s``' % p.__name__ for p in packages]
+                    names[-1] = ' and %s' % names[-1]
+                    names = ', '.join(names)
+            else:
+                names = '``%s``' % packages.__name__
+            index = SAMPLE_INDEX.format(names, gram)
         else:
             index = self.OpenIndex(index_base)
         app = self._DocPackageFromTop(packages, showprivate=showprivate)
@@ -506,5 +504,19 @@ class Generator(properties.HasProperties):
    self
 
 """
-        self.WriteIndex(index + app)
+        index += app
+        if notify:
+            index += """
+
+.. admonition:: Built by ``gendocs``
+   :class: note
+
+    This documentation was built using `gendocs`_, an automatic doc-pages
+    generator for Python packages.
+
+
+.. _gendocs: https://gendocs.readthedocs.io/en/latest/
+
+"""
+        self.WriteIndex(index)
         return None
