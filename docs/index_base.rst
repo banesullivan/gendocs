@@ -13,6 +13,11 @@ Generate Documentation Automatically
    :target: https://travis-ci.org/banesullivan/gendocs
    :alt: Build Status
 
+.. image :: https://img.shields.io/github/stars/banesullivan/gendocs.svg?style=social&label=Stars
+   :target: https://github.com/banesullivan/gendocs
+   :alt: GitHub
+
+
 This is a Python package for automatically building the documentation pages to
 document a given Python package using Sphinx.
 
