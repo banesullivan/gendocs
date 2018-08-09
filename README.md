@@ -52,14 +52,14 @@ If your project generates documentation automatically, please add a badge to you
 Markdown:
 
 ```text
-[![Documentation Built by gendocs](https://img.shields.io/badge/docs%20by-gendocs-blue.svg)](https://gendocs.readthedocs.io/en/latest/?badge=latest)
+[![Documentation Built by gendocs](https://img.shields.io/badge/docs%20by-gendocs-blue.svg)](https://gendocs.readthedocs.io/en/latest/)
 ```
 
 RST / Sphinx:
 
 ```text
 .. image:: https://img.shields.io/badge/docs%20by-gendocs-blue.svg
-   :target: https://gendocs.readthedocs.io/en/latest/?badge=latest)
+   :target: https://gendocs.readthedocs.io/en/latest/
    :alt: Documentation Built by gendocs
 
 ```
