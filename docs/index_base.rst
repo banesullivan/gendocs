@@ -20,19 +20,19 @@ Generate Documentation Automatically
 
 This is a Python package for automatically building the documentation pages to
 document a given Python package using Sphinx.
-
-This package allows users to keep all of their documentation directly within their packages without have to make new doc pages anytime new functionality is added! For a demonstration of how this works, please explore the ``dummypkg`` documentation we have included to show how features in ``gendocs`` can be used. Note that all the docstrings in ``dummypkg`` are what produce its documentation pages.
+``gendocs`` allows users to keep all of their documentation directly within their
+packages as pages are generated directly from the docstrings in the code!
 
 Connections
 -----------
 
-Want to see what this produces? Check out one of the following projects which uses ``gendocs``:
+Want to see examples? Check out one of the following projects which uses ``gendocs``:
 
-- `ESPA Tools`_: A Python package for simple loading of Landsat imagery as NumPy arrays
 - `PVGeo`_: A Python package for visualizing geophysical data in VTK and ParaView
+- `ESPA Tools`_: A Python package for simple loading of Landsat imagery as NumPy arrays
 
 
-.. _ESPA Tools: https://espatools.readthedocs.io/en/latest/?badge=latest)
+.. _ESPA Tools: https://espatools.readthedocs.io/en/latest/
 .. _PVGeo: http://docs.pvgeo.org
 
 
@@ -58,6 +58,7 @@ somewhere near the top of your ``conf.py``:
 
     # Import the package to document:
     import wonderfulpackage
+
     # Automatically generate documentation pages
     from gendocs import Generator
     Generator().DocumentPackages(wonderfulpackage)
@@ -65,7 +66,7 @@ somewhere near the top of your ``conf.py``:
 That's it! That code block above is all you need to do to fully document your package(s). Now you can build the Sphinx documentation and all docs pages will be automatically generated.
 
 
-.. admonition:: Remove the `Edit on GitHub`
+.. admonition:: Remove the `Edit on GitHub` Button
    :class: warning
 
     Be sure to remove the `Edit on GitHub` link from your project by following `these steps`_.
@@ -73,7 +74,7 @@ That's it! That code block above is all you need to do to fully document your pa
     .. _these steps: https://docs.readthedocs.io/en/latest/guides/remove-edit-buttons.html
 
 
-.. admonition:: Define your homepage
+.. admonition:: Make Your Own Homepage
    :class: note
 
     Note that you can also set up a base index file in your project for the ``Generator``
@@ -91,7 +92,7 @@ Markdown:
 
 .. code-block:: text
 
-    [![Documentation Built by gendocs](https://img.shields.io/badge/docs%20by-gendocs-blue.svg)](https://gendocs.readthedocs.io/en/latest/?badge=latest)
+    [![Documentation Built by gendocs](https://img.shields.io/badge/docs%20by-gendocs-blue.svg)](https://gendocs.readthedocs.io/en/latest/)
 
 
 RST / Sphinx:
@@ -99,7 +100,7 @@ RST / Sphinx:
 .. code-block:: text
 
     .. image:: https://img.shields.io/badge/docs%20by-gendocs-blue.svg
-       :target: https://gendocs.readthedocs.io/en/latest/?badge=latest)
+       :target: https://gendocs.readthedocs.io/en/latest/
        :alt: Documentation Built by gendocs
 
 

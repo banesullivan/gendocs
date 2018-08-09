@@ -10,6 +10,12 @@ What to Include
 
 For ``gendocs`` to work, every module being documented MUST contain an ``__all__`` varaible defining what is available to be documented. This varaible ensures ``gendocs`` does not recurse through external packages you might use internally.
 
+.. admonition:: Make sure to include an ``__all__``
+   :class: warning
+
+    Note that only what is defined in this module's ``__all__`` list is what is accessible and what gets documented.
+    Whithout an ``__all__`` the documentation build will fail.
+
 Some optional variables:
 
 - ``__displayname__`` (``str``): include this attribute to change how the heading for any documented element is displayed
@@ -73,8 +79,7 @@ To use your own homepage to provide a project overview then create a ``.rst`` fi
     # Automatically generate documentation pages and show private members
     from gendocs import Generator
     gen = Generator()
-    gen.DocumentPackages(
-                         wonderfulpackage,
+    gen.DocumentPackages(wonderfulpackage,
                          index_base='../index_base.rst',
                          showprivate=True
                         )
@@ -508,14 +513,12 @@ class Generator(properties.HasProperties):
         if notify:
             index += """
 
-.. admonition:: Built by ``gendocs``
+.. admonition:: Docs Automatically Generated
    :class: note
 
-    This documentation was built using `gendocs`_, an automatic doc-pages
-    generator for Python packages.
+   `Learn more`_ about automatic documentation
 
-
-.. _gendocs: https://gendocs.readthedocs.io/en/latest/
+.. _Learn more: https://gendocs.readthedocs.io/en/latest/
 
 """
         self.WriteIndex(index)

@@ -20,11 +20,15 @@ sys.path.insert(0, path)
 # -- Automatic Doc Pages Generation ------------------------------------------
 
 
-import gendocs, dummypkg # for documenting
+import gendocs # for documenting
 from gendocs import Generator
 
 # Automatically generate documentaion pages
-Generator().DocumentPackages([gendocs, dummypkg], '../index_base.rst', showprivate=True)
+Generator().DocumentPackages([gendocs],
+                             '../index_base.rst',
+                             showprivate=True,
+                             notify=False
+                            )
 
 
 # -- Project information -----------------------------------------------------

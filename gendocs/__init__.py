@@ -1,4 +1,4 @@
-"""gendocs: automatically build the documentation pages to document a given Python package for Sphinx
+"""``gendocs``: automatically build documentation pages for a Python package.
 """
 
 from .generator import *

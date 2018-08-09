@@ -17,7 +17,7 @@ setuptools.setup(
     long_description=long_description,
     long_description_content_type="text/markdown",
     url="https://github.com/banesullivan/gendocs",
-    packages=setuptools.find_packages(exclude=('*pkg',)),
+    packages=setuptools.find_packages(),
     install_requires=[
         'Sphinx>=1.7',
         'properties>=0.5.2',
