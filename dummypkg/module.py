@@ -1,6 +1,7 @@
 """``module`` is a module at the top level of the ``dummypkg`` package which contains no submodules but only classes, functions, and other not module like code.
 
-.. admonition:: Note
+.. admonition:: Make sure to include an ``__all__``
+   :class: warning
 
     Note that only what is defined in this module's ``__all__`` list is what is accessible and what get's documented.
     Whithout an ``__all__`` the documentation build will fail.
@@ -22,7 +23,7 @@ class foo(object):
 
 class _privatefoo(object):
     """This is a private class because of the ``_`` prefix, yet it is still
-    documented because we have the ``showprivate`` variable of the ``Generator``
+    documented because we have the ``showprivate`` variable of the ``DocumentPackages``
     in our ``conf.py`` enabled.
     """
     def __init__(self):

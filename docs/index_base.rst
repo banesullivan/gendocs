@@ -60,7 +60,16 @@ somewhere near the top of your ``conf.py``:
 That's it! That code block above is all you need to do to fully document your package(s). Now you can build the Sphinx documentation and all docs pages will be automatically generated.
 
 
-.. admonition:: Note
+.. admonition:: Remove the `Edit on GitHub`
+   :class: warning
+
+    Be sure to remove the `Edit on GitHub` link from your project by following `these steps`_.
+
+    .. _these steps: https://docs.readthedocs.io/en/latest/guides/remove-edit-buttons.html
+
+
+.. admonition:: Define your homepage
+   :class: note
 
     Note that you can also set up a base index file in your project for the ``Generator``
     to append if you'd like to include a brief overview of the package.

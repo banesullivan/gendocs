@@ -33,8 +33,14 @@ If you simply just want to put up the documentation for your package, then set u
     Generator().DocumentPackages(wonderfulpackage)
 
 
-That's all you have to do! Now you can push your changes to a continuous integration like ReadTheDocs and have your entire package automatically documented.
+That's all you have to do! Now you can push your changes to a continuous integration like Read the Docs and have your entire package automatically documented.
 
+.. admonition:: Remove the `Edit on GitHub`
+   :class: warning
+
+    Be sure to remove the `Edit on GitHub` link from your project by following `these steps`_.
+
+    .. _these steps: https://docs.readthedocs.io/en/latest/guides/remove-edit-buttons.html
 
 Sophisticated Use Case
 ----------------------
