@@ -79,7 +79,7 @@ That's it! That code block above is all you need to do to fully document your pa
 
     Note that you can also set up a base index file in your project for the ``Generator``
     to append if you'd like to include a brief overview of the package.
-    We keep ours in the top level of the docs directory and pass the filename to the
+    We simply pass the filename of our README to the
     ``DocumentPackages`` method.
 
 

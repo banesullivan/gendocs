@@ -25,7 +25,7 @@ from gendocs import Generator
 
 # Automatically generate documentaion pages
 Generator().DocumentPackages([gendocs],
-                             '../index_base.rst',
+                             '../../README.rst',
                              showprivate=True,
                              notify=False
                             )

@@ -69,7 +69,7 @@ Its worth noting that you can control how private features are ducumented by pas
 Custom Homepage
 ^^^^^^^^^^^^^^^
 
-To use your own homepage to provide a project overview then create a ``.rst`` file containing the content for your homepage and pase the relative file name to the ``DocumentPackages`` method:
+To use your own homepage to provide a project overview then create a ``.rst`` file containing the content for your homepage and paste the relative file name to the ``DocumentPackages`` method (we use our README for convienance):
 
 .. code-block:: python
 
@@ -80,7 +80,7 @@ To use your own homepage to provide a project overview then create a ``.rst`` fi
     from gendocs import Generator
     gen = Generator()
     gen.DocumentPackages(wonderfulpackage,
-                         index_base='../index_base.rst',
+                         index_base='../../README.rst',
                          showprivate=True
                         )
 
