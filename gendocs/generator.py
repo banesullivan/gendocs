@@ -465,7 +465,7 @@ class Generator(properties.HasProperties):
 
     @staticmethod
     def OpenIndex(filename):
-        with open('../index_base.rst', 'r') as fid:
+        with open(filename, 'r') as fid:
             index = fid.read()
             fid.close()
         return index
