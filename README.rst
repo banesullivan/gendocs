@@ -26,7 +26,7 @@ packages as pages are generated directly from the docstrings in the code!
 Connections
 -----------
 
-Want to see examples? Check out one of the following projects which uses ``gendocs``:
+Want to see examples? Check out one of the following projects which use ``gendocs``:
 
 - `PVGeo`_: A Python package for visualizing geophysical data in VTK and ParaView
 - `ESPA Tools`_: A Python package for simple loading of Landsat imagery as NumPy arrays
@@ -63,7 +63,7 @@ somewhere near the top of your ``conf.py``:
     from gendocs import Generator
     Generator().DocumentPackages(wonderfulpackage)
 
-That's it! That code block above is all you need to do to fully document your package(s). Now you can build the Sphinx documentation and all docs pages will be automatically generated.
+That's it! That code block above is all you need to do to document your package(s) thoroughly. Now you can build the Sphinx documentation, and all docs pages will be automatically generated.
 
 
 .. admonition:: Remove the `Edit on GitHub` Button

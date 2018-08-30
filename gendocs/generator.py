@@ -3,29 +3,29 @@
 Conventions
 -----------
 
-In order for ``gendocs`` to work properly, we have re-definded the idea of `packages` and `modules` for the sake of ``gendocs``. A package can contain just about anything: classes, functions, modules, sub-module, etc.; while a module in the traditional sense can do the same, we re-define modules to not contain any further sub-modules. This re-definition allows ``gendocs`` to mimic the structure of a Python package and automatically generate documentation pages containing the docstrings for the package!
+For ``gendocs`` to work properly, we have re-defined the idea of `packages` and `modules` for the sake of ``gendocs``. A package can contain just about anything: classes, functions, modules, sub-module, etc.; while a module in the traditional sense can do the same, we re-define modules not to contain any further sub-modules. This re-definition allows ``gendocs`` to mimic the structure of a Python package and automatically generate documentation pages containing the docstrings for the package!
 
 What to Include
 ^^^^^^^^^^^^^^^
 
-For ``gendocs`` to work, every module being documented MUST contain an ``__all__`` varaible defining what is available to be documented. This varaible ensures ``gendocs`` does not recurse through external packages you might use internally.
+For ``gendocs`` to work, every module being documented MUST contain an ``__all__`` variable defining what is available to be documented. This variable ensures ``gendocs`` does not recurse through external packages you might use internally.
 
 .. admonition:: Make sure to include an ``__all__``
    :class: warning
 
     Note that only what is defined in this module's ``__all__`` list is what is accessible and what gets documented.
-    Whithout an ``__all__`` the documentation build will fail.
+    Without an ``__all__`` the documentation build will fail.
 
 Some optional variables:
 
 - ``__displayname__`` (``str``): include this attribute to change how the heading for any documented element is displayed
-- ``__category__`` (``str``): if any documented element contains this attribute, a statics table will be generated n the home page to count occurences of various categories.
+- ``__category__`` (``str``): if any documented element contains this attribute, a statistics table is generated on the home page to count occurrences of various categories.
 
 
 A Simple Use Case
 -----------------
 
-If you simply just want to put up the documentation for your package, then set up sphinx documentation using ``sphinx-quickstart`` (`details`_) and stop after you've generated a new ``conf.py``. Edit the parameters of your configuration file appropriately and then add the following somewhere near the top:
+If you only want to put up the documentation for your package, then set up sphinx documentation using ``sphinx-quickstart`` (`details`_) and stop after you've generated a new ``conf.py``. Edit the parameters of your configuration file appropriately and then add the following somewhere near the top:
 
 .. _details: http://www.sphinx-doc.org/en/1.7/tutorial.html
 
@@ -54,7 +54,7 @@ Sophisticated Use Case
 Private Members
 ^^^^^^^^^^^^^^^
 
-Its worth noting that you can control how private features are ducumented by passing an argument to the the ``DocumentPackages`` method:
+It's worth noting that you can control how private features are documented by passing an argument to the ``DocumentPackages`` method:
 
 .. code-block:: python
 
@@ -69,7 +69,7 @@ Its worth noting that you can control how private features are ducumented by pas
 Custom Homepage
 ^^^^^^^^^^^^^^^
 
-To use your own homepage to provide a project overview then create a ``.rst`` file containing the content for your homepage and paste the relative file name to the ``DocumentPackages`` method (we use our README for convienance):
+To use your own homepage to provide a project overview then create a ``.rst`` file containing the content for your homepage and paste the relative file name to the ``DocumentPackages`` method (we use our README for convenience):
 
 .. code-block:: python
 
