@@ -432,9 +432,9 @@ class Generator(properties.HasProperties):
 .. toctree::
    :maxdepth: 5
    :caption: %s:
-''' % (package.__name__)
+''' % (name)
             # Make sure paths are ready
-            path = 'content/%s' % name
+            path = 'content/%s' % package.__name__
             if os.path.exists(path):
                 shutil.rmtree(path)
             os.makedirs(path)
