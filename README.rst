@@ -39,7 +39,7 @@ Want to see examples? Check out one of the following projects which use ``gendoc
 Get Started
 -----------
 
-Install `gendocs` from PyPI:
+Install ``gendocs`` from PyPI:
 
 .. code-block:: bash
 
