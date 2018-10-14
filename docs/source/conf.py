@@ -34,8 +34,10 @@ Generator().DocumentPackages([gendocs],
 # -- Project information -----------------------------------------------------
 
 project = 'gendocs'
-copyright = '2018, Bane Sullivan'
+copyright = u'2018, Bane Sullivan, http:://banesullivan.com'
 author = 'Bane Sullivan'
+html_show_copyright = False
+html_show_sphinx = False
 
 # The short X.Y version
 version = ''
