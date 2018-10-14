@@ -5,15 +5,15 @@ Generate Documentation Automatically
    :target: https://gendocs.readthedocs.io/en/latest/?badge=latest
    :alt: Documentation Status
 
-.. image :: https://img.shields.io/pypi/v/gendocs.svg
+.. image:: https://img.shields.io/pypi/v/gendocs.svg
    :target: https://pypi.org/project/gendocs/
    :alt: PyPI
 
-.. image :: https://travis-ci.org/banesullivan/gendocs.svg?branch=master
+.. image:: https://travis-ci.org/banesullivan/gendocs.svg?branch=master
    :target: https://travis-ci.org/banesullivan/gendocs
    :alt: Build Status
 
-.. image :: https://img.shields.io/github/stars/banesullivan/gendocs.svg?style=social&label=Stars
+.. image:: https://img.shields.io/github/stars/banesullivan/gendocs.svg?style=social&label=Stars
    :target: https://github.com/banesullivan/gendocs
    :alt: GitHub
 
@@ -65,8 +65,10 @@ virtual environment:
 	$ pip install cookiecutter
 
 
-Now you can use Cookiecutter_ to create a new project ready for ``gendocs`` by
-executing the following command and following the prompts:
+Now you can use `our Cookiecutter template`_ to create a new project ready
+for ``gendocs`` by executing the following command and following the prompts:
+
+.. _our Cookiecutter template: https://github.com/banesullivan/cookiecutter-gendocs
 
 
 .. code-block:: bash
@@ -76,6 +78,7 @@ executing the following command and following the prompts:
 
 That's it! Now you have a new Python project ready for automatic documentation
 and deployment.
+
 
 Usage
 ^^^^^
