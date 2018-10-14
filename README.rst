@@ -50,8 +50,8 @@ Cookiecutter
 ^^^^^^^^^^^^
 
 Want to easily create a new project that will build its own documentation?
-Try the ``gendocs`` Cookiecutter which will prompt you for your new projects
-details and create all the needed project structure for your new, automatically
+Try the ``gendocs`` Cookiecutter which will prompt you for your new project's
+details and create all the needed file structures for your new, automatically
 documented Python package.
 
 To create a new project, make sure you have Cookiecutter_ installed in your
