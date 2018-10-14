@@ -46,9 +46,41 @@ Install `gendocs` from PyPI:
     $ pip install gendocs
 
 
+Cookiecutter
+^^^^^^^^^^^^
+
+Want to easily create a new project that will build its own documentation?
+Try the ``gendocs`` Cookiecutter which will prompt you for your new projects
+details and create all the needed project structure for your new, automatically
+documented Python package.
+
+To create a new project, make sure you have Cookiecutter_ installed in your
+virtual environment:
+
+.. _Cookiecutter: https://github.com/audreyr/cookiecutter
+
+
+.. code-block:: bash
+
+	$ pip install cookiecutter
+
+
+Now you can use Cookiecutter_ to create a new project ready for ``gendocs`` by
+executing the following command and following the prompts:
+
+
+.. code-block:: bash
+
+    $ cookiecutter https://github.com/banesullivan/cookiecutter-gendocs.git
+
+
+That's it! Now you have a new Python project ready for automatic documentation
+and deployment.
 
 Usage
 ^^^^^
+
+Already have a Python package in need of automatic documentation? Follow these steps.
 
 This generator is built for Sphinx (RST) documentation.
 To document your package, setup sphinx and a ``conf.py`` then add the following
