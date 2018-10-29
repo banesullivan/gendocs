@@ -145,13 +145,16 @@ class Classifier(object):
 ###############################################################################
 
     @staticmethod
-    def GetClassText(heading, name, showprivate=False):
+    def GetClassText(heading, name, showprivate=False, showinh=False):
         """Returns the needed text to automatically document a class in RSF/sphinx"""
         und = '-'*len(heading)
+        avail = [':private-members:', ':inherited-members:']
+        opts = []
         if showprivate:
-            opts = ':private-members:'
-        else:
-            opts = ''
+            opts.append(avail[0])
+        if showinh:
+            opts.append(avail[1])
+        opts = '\n'.join(opts)
         return r'''
 
 %s
@@ -227,7 +230,7 @@ class Generator(properties.HasProperties):
 
 ''' % (title, '-'*len(title), cats, vals)
 
-    def _ProduceSingleContent(self, mod, showprivate=False):
+    def _ProduceSingleContent(self, mod, showprivate=False, showinh=False):
         """An internal helper to create a page for a single module. This will
         automatically generate the needed RSF to document the module
         and save the module to its own page in its appropriate location.
@@ -274,7 +277,7 @@ class Generator(properties.HasProperties):
                         pass
                     # Make the auto doc rst
                     if inspect.isclass(f[1]):
-                        fid.write(Classifier.GetClassText(featname, '%s.%s' % (mod[1].__name__, f[1].__name__), showprivate=showprivate))
+                        fid.write(Classifier.GetClassText(featname, '%s.%s' % (mod[1].__name__, f[1].__name__), showprivate=showprivate, showinh=showinh))
                     elif inspect.isfunction(f[1]):
                          fid.write(Classifier.GetFunctionText(featname, '%s.%s' %  (mod[1].__name__, f[1].__name__)))
 
@@ -283,7 +286,7 @@ class Generator(properties.HasProperties):
 
 
 
-    def _ProduceContent(self, mods, showprivate=False):
+    def _ProduceContent(self, mods, showprivate=False, showinh=False):
         """An internal helper to create pages for several modules that do not have nested modules.
         This will automatically generate the needed RSF to document each module module
         and save the module to its own page appropriately.
@@ -309,13 +312,13 @@ class Generator(properties.HasProperties):
                 continue
             if mod[0][0:2] == '__': #and not showprivate
                 continue
-            result += self._ProduceSingleContent(mod, showprivate)
+            result += self._ProduceSingleContent(mod, showprivate, showinh)
         return result
 
 
 
 
-    def _MakePackagePages(self, package, showprivate=False, nested=False):
+    def _MakePackagePages(self, package, showprivate=False, nested=False, showinh=False):
         """An internal helper to generate all of the pages for a given package
 
         Args:
@@ -361,7 +364,7 @@ class Generator(properties.HasProperties):
             if os.path.exists(pt): shutil.rmtree(pt)
             os.makedirs(pt)
             ignore += inspect.getmembers(pkg[1])
-            f = self._MakePackagePages(pkg[1], showprivate=showprivate, nested=True)
+            f = self._MakePackagePages(pkg[1], showprivate=showprivate, nested=True, showinh=showinh)
             files.append(f.split(package.__name__.replace('.', '/')+'/')[1])
 
         if nested:
@@ -380,7 +383,7 @@ class Generator(properties.HasProperties):
             # include sub packages first
             index += '\n   '.join(files)
             # then include modules
-            index += '\n   ' + self._ProduceContent(nmods, showprivate=showprivate)
+            index += '\n   ' + self._ProduceContent(nmods, showprivate=showprivate, showinh=showinh)
             findex = 'content/%s/index.rst' % (package.__name__.replace('.', '/'))
 
             # Write the file
@@ -394,11 +397,11 @@ class Generator(properties.HasProperties):
         # Not nested: return all files
         names = '\n   %s/%s/' % ( self.path, package.__name__.replace('.', '/'))
         nmods = [m for m in nmods if m not in ignore]
-        return names.join(self._ProduceContent(nmods, showprivate=showprivate).split('\n   ')+files)
+        return names.join(self._ProduceContent(nmods, showprivate=showprivate, showinh=showinh).split('\n   ')+files)
 
 
 
-    def _DocPackageFromTop(self, packages, showprivate=False):
+    def _DocPackageFromTop(self, packages, showprivate=False, showinh=False):
         """Generates all of the documentation for given packages and
         appends new tocrees to the index. All documentation pages will be under the
         set relative path.
@@ -457,7 +460,7 @@ class Generator(properties.HasProperties):
                     f.write(package.__doc__)
                 appIndex += '\n   %s' % about
 
-            appIndex += self._MakePackagePages(package, showprivate=showprivate)
+            appIndex += self._MakePackagePages(package, showprivate=showprivate, showinh=showinh)
 
         # Return the new content to append
         return appIndex
@@ -477,7 +480,7 @@ class Generator(properties.HasProperties):
         return None
 
 
-    def DocumentPackages(self, packages, index_base=None, showprivate=False, notify=True):
+    def DocumentPackages(self, packages, index_base=None, showprivate=False, notify=True, showinh=False):
         """This is the high level API to use to generate documentation pages for any given package(s).
 
         Args:
@@ -500,7 +503,7 @@ class Generator(properties.HasProperties):
             index = SAMPLE_INDEX.format(names, gram)
         else:
             index = self.OpenIndex(index_base)
-        app = self._DocPackageFromTop(packages, showprivate=showprivate)
+        app = self._DocPackageFromTop(packages, showprivate=showprivate, showinh=showinh)
         index += self._GenerateStaticsTable()
         index += """
 .. toctree::
