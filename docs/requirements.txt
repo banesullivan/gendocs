@@ -3,4 +3,4 @@ sphinx-autobuild==0.7.1
 sphinx-rtd-theme==0.4.0
 sphinxcontrib-napoleon==0.6.1
 sphinxcontrib-websupport==1.1.0
-properties>=0.5.2
+properties>=0.4.0

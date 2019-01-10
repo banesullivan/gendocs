@@ -20,7 +20,7 @@ setuptools.setup(
     packages=setuptools.find_packages(),
     install_requires=[
         'Sphinx>=1.7',
-        'properties>=0.5.2',
+        'properties>=0.4.0',
     ],
     classifiers=(
         "Programming Language :: Python",
