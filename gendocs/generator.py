@@ -422,6 +422,15 @@ class Generator(properties.HasProperties):
             shutil.rmtree('content')
         os.makedirs('content')
 
+        appIndex += r'''
+
+.. toctree::
+   :maxdepth: 5
+   :hidden:
+   :caption: %s:
+
+''' % ('API Index')
+
         # Iterate over each package and generate appropriate pages
         for i in range(len(packages)):
             # The package to document and its path
@@ -430,14 +439,6 @@ class Generator(properties.HasProperties):
                 name = package.__displayname__
             except AttributeError:
                 name = package.__name__
-            # Each package at top level gets its own toctree
-            appIndex += r'''
-
-.. toctree::
-   :maxdepth: 5
-   :hidden:
-   :caption: %s:
-''' % (name)
             # Make sure paths are ready
             path = 'content/%s' % package.__name__
             if os.path.exists(path):
@@ -445,24 +446,36 @@ class Generator(properties.HasProperties):
             os.makedirs(path)
 
             # Check if there is top level documentation
-            if package.__doc__:
-                # Get metadata
-                meta = 'About %s\n%s\n' % (name, '='*len('About ' + name))
-                author = getattr(package, "__author__", None)
-                license = getattr(package, "__license__", None)
-                copyright = getattr(package, "__copyright__", None)
-                version = getattr(package, "__version__", None)
-                if author: meta += '\n* Author: %s' % author
-                if license: meta += '\n* License: %s' % license
-                if copyright: meta += '\n* Copyright: %s' % copyright
-                if version: meta += '\n* Version: %s' % version
-                about = '%s/%s' % (path, 'about.rst')
-                with open(about, 'w') as f:
-                    f.write('%s\n\n' % meta)
-                    f.write(package.__doc__)
-                appIndex += '\n   %s' % about
+            # if package.__doc__:
+            # Get metadata
+            meta = 'About %s\n%s\n' % (name, '='*len('About ' + name))
+            author = getattr(package, "__author__", None)
+            license = getattr(package, "__license__", None)
+            copyright = getattr(package, "__copyright__", None)
+            version = getattr(package, "__version__", None)
+            if author: meta += '\n* Author: %s' % author
+            if license: meta += '\n* License: %s' % license
+            if copyright: meta += '\n* Copyright: %s' % copyright
+            if version: meta += '\n* Version: %s' % version
+            about = '%s/%s' % (path, 'index.rst')
 
-            appIndex += self._MakePackagePages(package, showprivate=showprivate, showinh=showinh)
+            this_toc = r'''
+
+.. toctree::
+   :maxdepth: 5
+   :caption: %s:
+''' % (name)
+
+            this_toc += self._MakePackagePages(package, showprivate=showprivate, showinh=showinh)
+            this_toc = this_toc.replace('%s/' % path, '')
+
+            with open(about, 'w') as f:
+                f.write('%s\n\n' % meta)
+                if package.__doc__:
+                    f.write(package.__doc__)
+                f.write(this_toc)
+
+            appIndex += '\n   %s' % about
 
         # Return the new content to append
         return appIndex
