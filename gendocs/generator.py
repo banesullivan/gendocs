@@ -103,7 +103,7 @@ appIndex = '''
 
 .. toctree::
    :maxdepth: 3
-   :caption: PVGeo:
+   :hidden:
 '''
 
 
@@ -379,6 +379,7 @@ class Generator(properties.HasProperties):
 
 .. toctree::
    :maxdepth: 5
+   :hidden:
     ''' % (name, '*' * len(name))
             # include sub packages first
             index += '\n   '.join(files)
@@ -434,6 +435,7 @@ class Generator(properties.HasProperties):
 
 .. toctree::
    :maxdepth: 5
+   :hidden:
    :caption: %s:
 ''' % (name)
             # Make sure paths are ready
@@ -480,7 +482,9 @@ class Generator(properties.HasProperties):
         return None
 
 
-    def DocumentPackages(self, packages, index_base=None, showprivate=False, notify=True, showinh=False):
+    def DocumentPackages(self, packages, index_base=None, showprivate=False,
+                         notify=True, showinh=False, intro_pages=None,
+                         append_material=None, extra=None):
         """This is the high level API to use to generate documentation pages for any given package(s).
 
         Args:
@@ -510,9 +514,19 @@ class Generator(properties.HasProperties):
    :hidden:
 
    self
-
 """
+        if intro_pages is not None:
+            if isinstance(intro_pages, str):
+                intro_pages = [intro_pages]
+            for page in intro_pages:
+                index += '   {}'.format(page.strip())
+        index += '\n'
+        if append_material is not None:
+            index += append_material
         index += app
+
+        if extra is not None:
+            index += extra
         if notify:
             index += """
 
