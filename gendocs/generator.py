@@ -519,7 +519,7 @@ class Generator(properties.HasProperties):
             if isinstance(intro_pages, str):
                 intro_pages = [intro_pages]
             for page in intro_pages:
-                index += '   {}'.format(page.strip())
+                index += '   {}\n'.format(page.strip())
         index += '\n'
         if append_material is not None:
             index += append_material
