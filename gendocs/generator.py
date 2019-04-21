@@ -103,7 +103,7 @@ appIndex = '''
 
 .. toctree::
    :maxdepth: 3
-   :hidden:
+
 '''
 
 
@@ -379,7 +379,7 @@ class Generator(properties.HasProperties):
 
 .. toctree::
    :maxdepth: 5
-   :hidden:
+
     ''' % (name, '*' * len(name))
             # include sub packages first
             index += '\n   '.join(files)
